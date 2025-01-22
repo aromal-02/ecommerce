@@ -17,10 +17,9 @@ class LoginScreen extends StatelessWidget {
 
   LoginScreen({super.key});
 
-  void _navigateToHome(BuildContext context) {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (context) => BottomNavigation()),
-    );
+  void _validateAndSubmit(BuildContext context) {
+    final isFormValid = _formKey.currentState?.validate() ?? false;
+    bloc.validateAndSubmit(isFormValid, context, userid.text);
   }
 
   @override
@@ -54,8 +53,8 @@ class LoginScreen extends StatelessWidget {
                     return null;
                   },
                   controller: userid,
-                  label: 'Username / Phone Number',
-                  hintText: 'Enter your username or ph number',
+                  label: 'Phone Number',
+                  hintText: 'phone number',
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -72,7 +71,6 @@ class LoginScreen extends StatelessWidget {
                                   if (userid.text.isEmpty) {
                                     CustomToast(message: "Enter Your Id")
                                         .show(context);
-                                    
                                   } else {
                                     CustomToast(
                                             message:
@@ -128,10 +126,7 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(height: 32),
                 CustomButton(
                   onpress: () {
-                    final isFormValid =
-                        _formKey.currentState?.validate() ?? false;
-                    bloc.validateAndSubmit(
-                        isFormValid, () => _navigateToHome(context));
+                    _validateAndSubmit(context);
                   },
                   btname: "Login",
                 ),
@@ -148,8 +143,7 @@ class LoginScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) =>  SignUp()),
+                          MaterialPageRoute(builder: (context) => SignUp()),
                         );
                       },
                       child: const Text(
