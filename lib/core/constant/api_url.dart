@@ -3,13 +3,13 @@ class ApiUrls {
   String baseUrl = 'https://admin.kushinirestaurant.com/api';
 
     
-  String verify  = '/verify/';//post
-  String login_reg = '/login-register/';//post
-  String product = '/products/';//get//
-  String banners = '/banners/';//get//
-  String profile = 'user-data/';//get
-  String add_wishlist = '/add-remove-wishlist/';//post
-  String wishlist = '/wishlist/';//
-  String search = '/search/';//post
+  String verify  = '/verify/';
+  String login_reg = '/login-register/';
+  String product = '/products/';
+  String banners = '/banners/';
+  String profile = '/user-data/';
+  String add_wishlist = '/add-remove-wishlist/';
+  String wishlist = '/wishlist/';
+  String search = '/search/';
  
 }
